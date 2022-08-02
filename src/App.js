@@ -1,24 +1,14 @@
-import { useState } from "react";
+import useShop from "./context/api/ShopContext";
 import { data } from "./data";
 
 function App() {
-  // const { total, products, addToCart, removeFromCart } = useShop();
-  // console.log(total, products);
-  const [cart, setCart] = useState([]);
+  const { total, products, addToCart, removeFromCart } = useShop();
+  console.log(total, products);
 
-  const addToCart = (product) => {
-    setCart([...cart, product]);
-  };
-  console.log(cart);
   return (
     <div style={{ margin: "100px" }}>
-      <h2>Total Item Selected :{cart.length}</h2>
-      <h2>
-        Total Price:
-        {cart.reduce((t, cart) => {
-          return t + cart.price;
-        }, 0)}
-      </h2>
+      <h2>Total Item Selected :{products.length}</h2>
+      <h2>Total Price:{total}</h2>
       {data.map((product) => {
         return (
           <div style={{ border: "1px solid gray" }}>
