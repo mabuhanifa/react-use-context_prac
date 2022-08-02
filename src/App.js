@@ -1,13 +1,13 @@
-import useShop from "./context/api/ShopContext";
-import { data } from "./data";
+import { useContext } from "react";
+import { CounterContext } from "./context/api/CounterContext";
 
 function App() {
-  const { total, products, addToCart, removeFromCart } = useShop();
-  console.log(total, products);
+  const { count } = useContext(CounterContext);
+  console.log(count);
 
   return (
     <div style={{ margin: "100px" }}>
-      <h2>Total Item Selected :{products.length}</h2>
+      {/* <h2>Total Item Selected :{products.length}</h2>
       <h2>Total Price:{total}</h2>
       {data.map((product) => {
         return (
@@ -16,7 +16,8 @@ function App() {
             <button onClick={() => addToCart(product)}>Add</button>
           </div>
         );
-      })}
+      })} */}
+      <h2>{count}</h2>
     </div>
   );
 }
