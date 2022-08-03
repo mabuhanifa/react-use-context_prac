@@ -1,6 +1,7 @@
+import axios from "axios";
 import { createContext, useContext, useReducer } from "react";
 
-const initialState = { count: 0 };
+const initialState = { count: 0, todo: [] };
 const countReducer = (state, action) => {
   const { type, payload } = action;
   switch (type) {
@@ -12,8 +13,11 @@ const countReducer = (state, action) => {
 
     case "incrementBy":
       return { ...state, count: state.count + payload };
+
+    case "todo":
+      return { ...state, todo: payload};
     default:
-      return state.count;
+      return state;
   }
 };
 export const CounterContext = createContext(initialState);
@@ -38,11 +42,21 @@ export const CounterProvider = (props) => {
     });
   };
 
+  const todo = async () => {
+    const res = await axios.get("https://jsonplaceholder.typicode.com/todos");
+    dispatch({
+      type: "todo",
+      payload: res.data,
+    });
+  };
+
   const store = {
     count: state.count,
+    todo: state.todo,
     increment,
     decrement,
     incrementBy,
+    api: todo,
   };
   return (
     <CounterContext.Provider value={store}>
