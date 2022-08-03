@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useContext, useReducer } from "react";
 
 const initialState = { count: 0 };
 const countReducer = (state, action) => {
@@ -49,4 +49,12 @@ export const CounterProvider = (props) => {
       {props.children}
     </CounterContext.Provider>
   );
+};
+
+export const useCounter = () => {
+  const context = useContext(CounterContext);
+  if (context === undefined) {
+    throw new Error("ShopContext is undefined");
+  }
+  return context;
 };
