@@ -1,13 +1,10 @@
-import { useEffect } from "react";
 import { useCounter } from "./context/api/CounterContext";
 
 function App() {
   const { count, increment, decrement, incrementBy, todo,api } = useCounter();
   //console.log(state, setState);
   console.log(count,todo);
-  useEffect(() => {
-    api();
-  },[]);
+
   // const value = state.reduce((v, t) => Number(v) + Number(t), 0);
   // useEffect(() => {
 

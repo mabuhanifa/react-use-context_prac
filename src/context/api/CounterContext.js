@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
 
 const initialState = { count: 0, todo: [] };
 const countReducer = (state, action) => {
@@ -15,7 +15,7 @@ const countReducer = (state, action) => {
       return { ...state, count: state.count + payload };
 
     case "todo":
-      return { ...state, todo: payload};
+      return { ...state, todo: payload };
     default:
       return state;
   }
@@ -49,14 +49,15 @@ export const CounterProvider = (props) => {
       payload: res.data,
     });
   };
-
+  useEffect(() => {
+    todo();
+  }, []);
   const store = {
     count: state.count,
     todo: state.todo,
     increment,
     decrement,
     incrementBy,
-    api: todo,
   };
   return (
     <CounterContext.Provider value={store}>
