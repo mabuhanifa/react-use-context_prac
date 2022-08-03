@@ -1,11 +1,19 @@
-import { createContext } from "react";
-const initialState = {
-  count: 50,
-};
-export const CounterContext = createContext(initialState);
+import { createContext, useState } from "react";
+
+const count= [52,50];
+
+
+export const CounterContext = createContext(count);
 
 export const CounterProvider = (props) => {
-  return (<CounterContext.Provider value={initialState}>
-    {props.children}
-    </CounterContext.Provider>);
+  const [state, setState] = useState(count);
+  const store = {
+    state,
+    setState,
+  };
+  return (
+    <CounterContext.Provider value={store}>
+      {props.children}
+    </CounterContext.Provider>
+  );
 };
