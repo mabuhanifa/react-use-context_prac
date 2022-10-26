@@ -7,6 +7,7 @@ const initialState = {
   cart: [],
   counter: 0,
 };
+
 export const Store = ({ children }) => {
   const [state, dispatch] = useReducer(storeReducer, initialState);
   const store = { state, dispatch };

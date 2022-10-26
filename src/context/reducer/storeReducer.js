@@ -3,7 +3,12 @@ export const storeReducer = (state, action) => {
     case "add":
       return {
         ...state,
-        counter: (state.counter +1),
+        counter: state.counter + 1,
+      };
+    case "fetchData":
+      return {
+        ...state,
+        products: action.payload,
       };
 
     default:
