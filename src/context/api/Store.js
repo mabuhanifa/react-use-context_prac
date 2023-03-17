@@ -4,7 +4,7 @@ import { storeReducer } from "../reducer/storeReducer";
 const StoreContext = createContext();
 const initialState = {
   products: [],
-  cart: [],
+  cart: [0],
   counter: 0,
 };
 
