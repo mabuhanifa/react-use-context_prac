@@ -5,6 +5,11 @@ export const storeReducer = (state, action) => {
         ...state,
         counter: state.counter + 1,
       };
+    case "reduce":
+      return {
+        ...state,
+        counter: state.counter - 1,
+      };
     case "fetchData":
       return {
         ...state,
