@@ -23,3 +23,7 @@ export const useStore = () => {
   }
   return context;
 };
+
+export const useDispatch = () => {
+  return useContext(StoreContext).dispatch;
+};
