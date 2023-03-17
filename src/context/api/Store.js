@@ -27,3 +27,9 @@ export const useStore = () => {
 export const useDispatch = () => {
   return useContext(StoreContext).dispatch;
 };
+
+export const useSelector = (fn) => {
+  const { state } = useContext(StoreContext);
+  const selector = fn ? fn(state) : state;
+  return selector;
+};

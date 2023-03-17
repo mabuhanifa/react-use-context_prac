@@ -1,31 +1,12 @@
-import { useEffect } from "react";
-import { useDispatch, useStore } from "./context/api/Store";
-import { data } from "./data";
+import { useDispatch, useSelector } from "./context/api/Store";
 
 function App() {
   const dispatch = useDispatch();
-  const {
-    state: { products, counter },
-  } = useStore();
-  const add = () => {
-    dispatch({ type: "add" });
-  };
-  useEffect(() => {
-    const fetchData = () => {
-      dispatch({
-        type: "fetchData",
-        payload: data,
-      });
-    };
-    fetchData();
-  }, [dispatch]);
-  
-  console.log(dispatch);
+  const counter = useSelector((state) => state.counter);
 
   return (
     <div style={{ margin: "100px" }}>
       <div>{counter}</div>
-      <button onClick={add}>+</button>
     </div>
   );
 }
